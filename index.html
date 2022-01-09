@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Form Validator</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<script src="/app.js" type="module" defer></script>
+</head>
+
+<body>
+
+	<!-- FORM 1 -->
+	<section class="py-5">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<form id="contactForm" data-form="form" data-validate="validate">
+						<div class="form-group">
+							<label for="name">Full Name</label>
+							<input type="text" id="name" class="form-control" placeholder="Enter full name"
+								maxlength="100" required>
+						</div>
+
+						<div class="form-group">
+							<label for="inputEmail">Email Address</label>
+							<input type="email" id="email" class="form-control" placeholder="Enter email"
+								maxlength="200" required>
+						</div>
+
+						<div class="form-group">
+							<label for="phone">Phone</label>
+							<input type="tel" id="phone" class="form-control" placeholder="Phone" maxlength="50"
+								required>
+						</div>
+
+						<div class="form-group">
+							<label for="selectOptions" class="form-label">Select Options</label>
+							<select id="selectOptions" class="form-select" required>
+								<option selected disabled value="">Choose...</option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="multipleSelect" class="form-label">Example multiple select</label>
+							<select multiple="" id="multipleSelect" class="form-select" required>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="textarea" class="form-label">Example textarea</label>
+							<textarea type="text" id="textarea" class="form-control" rows="3" required></textarea>
+						</div>
+
+						<div class="form-group">
+							<label for="upload" class="form-label">File upload</label>
+							<input type="file" id="upload" class="form-control">
+						</div>
+
+
+						<div class="form-group">
+							<strong>Radio Buttons</strong>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="radio" id="radio" required>
+								<label class="form-check-label" for="radio">Yes</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="radio" id="radio" required>
+								<label class="form-check-label" for="radio">No</label>
+							</div>
+						</div>
+
+
+						<div class="form-check form-group">
+							<input type="checkbox" id="checkbox" class="form-check-input" required>
+							<label for="checkbox" class="form-check-label">I have read the terms and conditions</label>
+						</div>
+
+						<button type="submit" class="btn btn-primary mt-3">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- FORM 2 -->
+	<section class="py-5">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-8">
+					<form id="contactForm" method="post" action="/contact-us" data-form="form" data-validate="validate">
+						<input type="hidden" name="sendForm" value="1">
+						<div class="row">
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="contactName" id="inputName" required=""
+									placeholder="Full Name" aria-label="Full Name" maxlength="200" value="">
+							</div>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="postcode" id="inputPostcode" required=""
+									placeholder="Postcode" aria-label="Name" maxlength="7" value="">
+							</div>
+							<div class="col-md-6">
+								<input type="tel" class="form-control" name="tel" id="inputPhone" required=""
+									placeholder="Phone" aria-label="Phone number" maxlength="50" value="">
+							</div>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="propertyValue" id="inputValueProperty"
+									required="" placeholder="Property value" aria-label="Property value" maxlength="20"
+									value="">
+							</div>
+							<div class="col-md-6">
+								<input type="email" class="form-control" name="email" id="inputEmail" required=""
+									placeholder="Email" aria-label="Email" maxlength="50" value="">
+							</div>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="mortgageValue" id="inputMortgageValue"
+									required="" placeholder="Mortgage value" aria-label="Mortgage value" maxlength="20"
+									value="">
+							</div>
+							<div class="col-12">
+								<textarea class="form-control" name="enquiry" id="inputMessage" required=""
+									placeholder="Message" rows="3" aria-label="Message"></textarea>
+							</div>
+							<div class="col-md-6">
+								<div class="h-captcha" data-sitekey="5bd7798e-5a24-42a8-a7f8-853b7f8d3ee4"><iframe
+										src="https://newassets.hcaptcha.com/captcha/v1/f9bf301/static/hcaptcha-checkbox.html#id=0tbcz7pbgsco&amp;host=fortunefinancial.co.uk.dev.leenix.co.uk&amp;sentry=true&amp;reportapi=https%3A%2F%2Faccounts.hcaptcha.com&amp;recaptchacompat=true&amp;custom=false&amp;hl=en&amp;tplinks=on&amp;sitekey=5bd7798e-5a24-42a8-a7f8-853b7f8d3ee4&amp;theme=light"
+										title="widget containing checkbox for hCaptcha security challenge" tabindex="0"
+										frameborder="0" scrolling="no" data-hcaptcha-widget-id="0tbcz7pbgsco"
+										data-hcaptcha-response=""
+										style="width: 303px; height: 78px; overflow: hidden;"></iframe><textarea
+										id="g-recaptcha-response-0tbcz7pbgsco" name="g-recaptcha-response"
+										style="display: none;"></textarea><textarea id="h-captcha-response-0tbcz7pbgsco"
+										name="h-captcha-response" style="display: none;"></textarea></div>
+							</div>
+							<div class="col-md-6">
+								<button type="submit" class="btn btn-blue"> Send your enquiry</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<!-- FORM 3 -->
+	<section class="py-5">
+		<div class="container ">
+			<div class="row justify-content-center">
+				<div class="col-md-8">
+					<form data-form="form" data-validate="validate">
+						<input type="text" class="form-control" placeholder="Your Name" name="contactName"
+							maxlength="200" value="" required>
+						<input type="text" class="form-control" placeholder="Company or Organization" name="companyName"
+							maxlength="200" value="" required>
+						<select class="form-control" name='country' required>
+							<option value="" disabled selected>Country</option>
+							<option value="">Option 1</option>
+							<option value="">Option 2</option>
+						</select>
+						<input type="email" class="form-control" placeholder="Email" name="email" maxlength="200"
+							value="" required>
+						<input type="tel" class="form-control" placeholder="Phone" name="tel" maxlength="50" value=""
+							required>
+						<button type="submit" class="submit-button">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+
+</html>
