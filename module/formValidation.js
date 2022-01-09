@@ -298,8 +298,6 @@ export default class FormValidation {
             event.preventDefault()
             hasErrors.focus()
         }
-
-        // this.handleHcaptcha()
     }
 
 
