@@ -1,8 +1,17 @@
 export default class FormValidation {
-    constructor(form, { errorColor = "#dc3545", successColor = "#198754" } = {}) {
+    constructor(form, {
+        errorColor = "#dc3545",
+        successColor = "#198754",
+        bootstrapValidClass = "is-valid",
+        bootstrapInvalidClass = "is-invalid",
+        bootstrapInvalidFeedBack = "invalid-feedback"
+    } = {}) {
         this.forms = Array.from(document.querySelectorAll(form))
         this.errorColor = errorColor
         this.successColor = successColor
+        this.bootstrapValidClass = bootstrapValidClass
+        this.bootstrapInvalidClass = bootstrapInvalidClass
+        this.bootstrapInvalidFeedBack = bootstrapInvalidFeedBack
 
         // Initialize methods when DOMContent Loads
         this.removeDefaultValidation()
@@ -123,16 +132,17 @@ export default class FormValidation {
      * @returns field element with error
      */
     showError(field, error) {
-        const bootstrapValidClass = "is-valid"
-        const bootstrapInvalidClass = "is-invalid"
-        const bootstrapInvalidFeedBack = "invalid-feedback"
         const labelIsVisible = field.previousElementSibling
 
         // clear the valid message if it exist
-        bootstrapValidClass ? field.classList.remove(bootstrapValidClass) : field.classList.remove("success")
+        this.bootstrapValidClass ?
+            field.classList.remove(this.bootstrapValidClass) :
+            field.classList.remove("success")
 
         // add error class to field 
-        bootstrapInvalidClass ? field.classList.add(bootstrapInvalidClass) : field.classList.add("error")
+        this.bootstrapInvalidClass ?
+            field.classList.add(this.bootstrapInvalidClass) :
+            field.classList.add("error")
 
         // if field is radio and part of a group, add error and get last item
         if (field.type === "radio" && field.name) {
@@ -140,7 +150,9 @@ export default class FormValidation {
             if (group.length > 0) {
                 for (let i = 0; i < group.length; i++) {
                     if (group[i].form !== field.form) continue
-                    bootstrapInvalidClass ? group[i].classList.add(bootstrapInvalidClass) : group[i].classList.add('error')
+                    this.bootstrapInvalidClass ?
+                        group[i].classList.add(this.bootstrapInvalidClass) :
+                        group[i].classList.add('error')
                 }
                 field = group[group.length - 1]
             }
@@ -151,12 +163,15 @@ export default class FormValidation {
         if (!fieldId) return
 
         // if error message field already exist, return it. If not, create one
-        const boostrapErrorMessageField = field.form.querySelector(`div.${bootstrapInvalidFeedBack}#error-for-${fieldId}`)
+        const boostrapErrorMessageField = field.form.querySelector(`div.${this.bootstrapInvalidFeedBack}#error-for-${fieldId}`)
         const customErrorMessageField = field.form.querySelector(`div.error-message#error-for-${fieldId}`)
-        let message = boostrapErrorMessageField ? boostrapErrorMessageField : customErrorMessageField
+        let message = boostrapErrorMessageField ?
+            boostrapErrorMessageField :
+            customErrorMessageField
         if (!message) {
             message = document.createElement("div")
-            message.className = bootstrapInvalidFeedBack ? bootstrapInvalidFeedBack : "error-message"
+            message.className = this.bootstrapInvalidFeedBack ?
+                this.bootstrapInvalidFeedBack : "error-message"
             message.id = `error-for-${fieldId}`
             field.parentNode.insertBefore(message, field.nextSibling);
         }
@@ -191,16 +206,17 @@ export default class FormValidation {
      * @returns field element with cleared errors
      */
     clearError(field) {
-        const bootstrapValidClass = "is-valid"
-        const bootstrapInvalidClass = "is-invalid"
-        const bootstrapInvalidFeedBack = "invalid-feedback"
         const labelIsVisible = field.previousElementSibling
 
         // clear invalid class to field 
-        bootstrapInvalidClass ? field.classList.remove(bootstrapInvalidClass) : field.classList.remove("error")
+        this.bootstrapInvalidClass ?
+            field.classList.remove(this.bootstrapInvalidClass) :
+            field.classList.remove("error")
 
         // add valid class to field
-        bootstrapValidClass ? field.classList.add(bootstrapValidClass) : field.classList.add("success")
+        this.bootstrapValidClass ?
+            field.classList.add(this.bootstrapValidClass) :
+            field.classList.add("success")
 
 
         // remove ARIA role from the field
@@ -213,7 +229,9 @@ export default class FormValidation {
                 for (let i = 0; i < group.length; i++) {
                     // check field in current form
                     if (group[i].form !== field.name) continue
-                    bootstrapInvalidClass ? group[i].classList.remove(bootstrapInvalidClass) : group[i].classList.remove("error")
+                    this.bootstrapInvalidClass ?
+                        group[i].classList.remove(this.bootstrapInvalidClass) :
+                        group[i].classList.remove("error")
                 }
                 field = group[group.length - 1]
             }
@@ -224,9 +242,11 @@ export default class FormValidation {
         if (!fieldId) return
 
         // if error message field exist. If it does, clear it.
-        const boostrapErrorMessageField = field.form.querySelector(`div.${bootstrapInvalidFeedBack}#error-for-${fieldId}`)
+        const boostrapErrorMessageField = field.form.querySelector(`div.${this.bootstrapInvalidFeedBack}#error-for-${fieldId}`)
         const customErrorMessageField = field.form.querySelector(`div.error-message#error-for-${fieldId}`)
-        let message = boostrapErrorMessageField ? boostrapErrorMessageField : customErrorMessageField
+        let message = boostrapErrorMessageField ?
+            boostrapErrorMessageField :
+            customErrorMessageField
         if (!message) return;
 
         // hide error
@@ -234,8 +254,6 @@ export default class FormValidation {
         message.style.display = 'none'
         message.style.visibility = 'hidden'
         labelIsVisible ? labelIsVisible.style.color = "" : null
-
-
     }
 
 
